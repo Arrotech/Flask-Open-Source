@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/covid19.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="cardrow">
+        <div class="infocard">
+            <h3>Cases</h3>
+            <h3>+{{ worldwide_cases.todayCases }}</h3>
+            <small><span class="text-warning"><strong>{{ worldwide_cases.cases / 1000000 }}m</strong></span>
+                Total</small>
+        </div>
+        <div class="infocard">
+            <h3>Deaths</h3>
+            <h3>+{{ worldwide_cases.todayDeaths }}</h3>
+            <small><span class="text-danger"><strong>{{ worldwide_cases.deaths / 1000000 }}m</strong></span>
+                Total</small>
+        </div>
+        <div class="infocard">
+            <h3>Recoveries</h3>
+            <h3 class="ml-5">+{{ worldwide_cases.todayRecovered }}</h3>
+            <small><span class="text-success"><strong>{{ worldwide_cases.recovered / 1000000 }}m</strong></span>
+                Total</small>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
