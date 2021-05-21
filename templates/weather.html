@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.city.label }}
+            {{ form.city(class='form-control')}}
+        </div>
+        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    </form>
+    <br>
+    {% if message %}
+    <div class="alert alert-danger" role="alert">
+
+        <p class="mt-5">{{ message }}</p>
+    </div>
+    {% endif %}
+    {% if curr_temp_in_celsius %}
+    <div class="alert alert-success" role="alert">
+        <p class="mt-5">The temperature for {{ city }} is {{ curr_temp_in_celsius }}</p>
+        <p class="mt-5">The humidity for {{ city }} is {{ humidity }}</p>
+        <p class="mt-5">The pressure for {{ city }} is {{ pressure }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+.cardrow{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.infocard{
+    padding: 8px;
+    padding-left: 14px;
+    width: 300px;
+    -moz-box-shadow: 0 0 3px #ccc;
+    -webkit-box-shadow: 0 0 3px #ccc;
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 3px;
+}
