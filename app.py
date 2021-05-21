@@ -3,7 +3,7 @@ from flask.wrappers import Response
 import requests
 from os import path
 from dotenv import load_dotenv
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, make_response, jsonify
 from flask_bootstrap import Bootstrap
 from wtforms import StringField, SubmitField
 from flask_wtf import FlaskForm
@@ -54,6 +54,30 @@ def weather():
                                    pressure=pressure)
 
     return render_template('weather.html', form=form)
+
+@app.route('/covid19')
+def covid19_worldwide_cases():
+    """Display all covid19 cases across the globe."""
+    url = "https://api.caw.sh/v3/covid-19/all"
+    response = requests.get(url).json()
+
+    cases = response.get('cases')
+    todayCases = response.get('todayCases')
+    deaths = response.get('deaths')
+    todayDeaths = response.get('todayDeaths')
+    recovered = response.get('recovered')
+    todayRecovered = response.get('todayRecovered')
+
+    worldwide_cases = {
+        "cases": cases,
+        "todayCases": todayCases,
+        "deaths": deaths,
+        "todayDeaths": todayDeaths,
+        "recovered": recovered,
+        "todayRecovered": todayRecovered
+    }
+
+    return render_template('covid19.html', worldwide_cases=worldwide_cases)
 
 
 if __name__ == '__main__':
